@@ -1,3 +1,29 @@
+## React 15-Puzzle game
+
+This project is built in React.js and using Lodash, styled-components
+
+#### Installation:
+
+1. Clone this repository to your desktop. Example:
+
+```
+git clone https://github.com/freddan88/15-puzzle-game.git
+```
+
+2. Change directory to the project and install dependencies using npm
+
+```
+cd 15-puzzle-game && npm install
+```
+
+3. Start the project and play the game. Will automatically start your browser
+
+```
+npm start
+```
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

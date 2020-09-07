@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
-import PuzzleBoard from "./components/PuzzleBoard";
+import StyledPuzzleBoard from "./components/StyledPuzzleBoard";
 import PuzzleTile from "./components/PuzzleTile";
+import Overlay from "./components/Overlay";
 import _ from "lodash";
 
 const App = () => {
   const [randomizedPuzzleTiles, setRandomizedPuzzleTiles] = useState([]);
   const [initialPuzzleTiles, setInitialPuzzleTiles] = useState([]);
   const [hasWinner, setHasWinner] = useState(false);
-
-  console.log(hasWinner);
 
   // Configuration:
   const BOARD_COLUMNS = 4;
@@ -29,6 +28,11 @@ const App = () => {
     setRandomizedPuzzleTiles(_.shuffle(array));
   };
 
+  const resetGame = () => {
+    setRandomizedPuzzleTiles(_.shuffle(initialPuzzleTiles));
+    setHasWinner(false);
+  };
+
   const moveTile = (e) => {
     if (hasWinner) return;
     const order = randomizedPuzzleTiles;
@@ -39,21 +43,20 @@ const App = () => {
     const clickedRow = rows.filter((row) => row.includes(clickedTileNumber))[0];
     const clickedRowIndex = clickedRow.indexOf(clickedTileNumber);
     const clickedColum = _.map(rows, (row) => row[clickedRowIndex]);
-    // if (clickedRow.includes(0) || clickedColum.includes(0)) {
-    order.splice(emptyTileIndex, 1, clickedTileNumber);
-    order.splice(clickedTileIndex, 1, 0);
-    // console.log({ emptyTileIndex });
-    // console.log({ clickedTileIndex });
-    // console.log(clickedTileIndex);
-    // console.log(puzzleTiles);
-    // console.log(order);
-    setRandomizedPuzzleTiles(_.uniq(order));
+    if (clickedRow.includes(0) || clickedColum.includes(0)) {
+      order.splice(emptyTileIndex, 1, clickedTileNumber);
+      order.splice(clickedTileIndex, 1, 0);
+      // console.log({ emptyTileIndex });
+      // console.log({ clickedTileIndex });
+      // console.log(clickedTileIndex);
+      // console.log(puzzleTiles);
+      // console.log(order);
+      setRandomizedPuzzleTiles(_.uniq(order));
 
-    if (_.isEqual(initialPuzzleTiles, order)) {
-      console.log("You win!!!");
-      setHasWinner(true);
+      if (_.isEqual(initialPuzzleTiles, order)) {
+        setHasWinner(true);
+      }
     }
-    // }
   };
 
   const renderTiles = () => {
@@ -65,13 +68,13 @@ const App = () => {
 
   return (
     <div className="puzzle-app">
-      <button
-        onClick={() => randomize(randomizedPuzzleTiles)}
-        className="randomize-button"
-      >
+      {hasWinner && <Overlay restart={resetGame} />}
+      <button onClick={() => randomize(randomizedPuzzleTiles)} className="btn">
         Slumpa
       </button>
-      <PuzzleBoard>{renderTiles()}</PuzzleBoard>
+      <StyledPuzzleBoard gridColumns={BOARD_COLUMNS} gridRows={BOARD_ROWS}>
+        {renderTiles()}
+      </StyledPuzzleBoard>
     </div>
   );
 };
