@@ -1,6 +1,7 @@
 {
   "projectCreatedAt": "2020-09-06",
   "projectName": "15 Puzzle Game",
+  "projectGitHubUrl": "https://github.com/freddan88/15-puzzle-game",
   "projectTechnologies": ["React.js", "Javascript", "JSX"],
   "projectResource": "https://15-puzzle-game-fl01.netlify.app",
   "projectResourceCategoryIndex": 0,
