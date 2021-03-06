@@ -2,6 +2,8 @@
   "projectName": "15 Puzzle Game",
   "projectTechnologies": ["React.js", "Javascript", "JSX"],
   "projectResource": "https://15-puzzle-game-fl01.netlify.app",
+  "projectResourceCategory": "webpage"],
+  "projectResourceCategories": ["webpage","youtube","download","readme"],
   "projectDescription": "This project is part of a coding challenge. This is a classic puzzle game where you shall arrange numbers in correct order",
   "projectImage": "https://github.com/freddan88/15-puzzle-game/blob/master/portfolio/15-puzzle.jpg",
   "apiEndpoint": "https://api.github.com/repos/freddan88/15-puzzle-game",
